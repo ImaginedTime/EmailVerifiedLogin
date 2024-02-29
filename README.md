@@ -1,3 +1,10 @@
+# Email Verified Login
+### Visit it [here](https://email-verified-login.vercel.app/)
+#### Backend hosted [here](https://emailverifiedlogin.onrender.com/)
+##### Backend and database hosted on [Render](render.com)
+##### Frontend hosted on vercel.com
+
+
 # General Setup
 
 ## 1. Install Node.js
