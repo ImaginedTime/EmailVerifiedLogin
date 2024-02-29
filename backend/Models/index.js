@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config()
 
 //database connection
 //database name is testing
-const sequelize = new Sequelize(`postgres://postgres:${process.env.Password}@localhost:5432/EmailVerify`)
+const sequelize = new Sequelize(`postgres://postgres:${process.env.Password}@localhost:5432/${process.env.Database}`)
 
 //checking if connection is done with the authenticate method in sequelize
 sequelize.authenticate().then(() => {
