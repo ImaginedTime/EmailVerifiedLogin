@@ -1,7 +1,7 @@
 # Email Verified Login
 * __Visit it [here](https://email-verified-login.vercel.app/)__
-* __Backend and database hosted on [Render](render.com)__
-* __Frontend hosted on [Vercel](vercel.com)__
+* __Backend and database hosted on [Render](https://render.com)__
+* __Frontend hosted on [Vercel](https://vercel.com)__
 
 
 # General Setup
