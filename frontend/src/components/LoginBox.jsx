@@ -12,6 +12,18 @@ export default function LoginBox({ changePage }) {
 	const login = async (e) => {
 		e.preventDefault();
 
+		// check for valid email
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if(!emailRegex.test(email)) {
+			setError('Invalid Email');
+			return;
+		}
+
+		if(password.length < 8) {
+			setError('Password must be at least 8 characters long');
+			return;
+		}
+
 		const requestBody = {
 			email,
 			password

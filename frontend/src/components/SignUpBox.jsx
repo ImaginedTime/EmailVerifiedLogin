@@ -12,6 +12,23 @@ export default function SignUpBox({ changePage }) {
 	const signUp = async (e) => {
 		e.preventDefault();
 
+		if(username.length < 3) {
+			setError('Username must be at least 3 characters long');
+			return;
+		}
+
+		// check for valid email
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if(!emailRegex.test(email)) {
+			setError('Invalid Email');
+			return;
+		}
+
+		if(password.length < 8) {
+			setError('Password must be at least 8 characters long');
+			return;
+		}
+
 		const requestBody = {
 			userName: username,
 			email,

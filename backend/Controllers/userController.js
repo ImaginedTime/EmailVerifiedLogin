@@ -28,6 +28,7 @@ const signup = async (req, res) => {
             },
         });
 
+        // to resend the verification email
         if (emailcheck && emailcheck.dataValues.isVerified === false) {
             let token = await Token.findOne({
                 where: {
@@ -56,14 +57,6 @@ const signup = async (req, res) => {
             return res.status(201).send(emailcheck);
         }
 
-        // else if(emailcheck.dataValues.isVerified === true)
-        // {
-        //     return res.status(409).send({
-        //         error: "Email Already Exists",
-        //     });
-        // }
-
-
 
         //saving the user
         const user = await User.create(data);
@@ -86,7 +79,7 @@ const signup = async (req, res) => {
                     from: "no-reply@example.com",
                     to: `${email}`,
                     subject: "Account Verification Link",
-                    text: `Hello ${userName}, Please verify your email by \nclicking on this link : \n\t http://localhost:8080/api/users/verify-email/${user.id}/${setToken.token}`,
+                    text: `Hello ${userName}, Please verify your email by \nclicking on this link : \n\t https://emailverifiedlogin.onrender.com/api/users/verify-email/${user.id}/${setToken.token}`,
                 });
                 //if token is not created, send a status of 400
             } else {
