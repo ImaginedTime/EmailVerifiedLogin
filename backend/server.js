@@ -28,7 +28,7 @@ db.sequelize.sync({ force: false }).then(() => {
 })
 
 //routes for the user API
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
 app.get("/", (req, res) => {
     res.send("Welcome to the email verification API")
 });

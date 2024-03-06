@@ -26,7 +26,7 @@ export default function LoginBox({ changePage }) {
 
 			localStorage.setItem("userData", JSON.stringify(data));
 
-			console.log('login', email, password);
+			// console.log('login', email, password);
 			changePage('profile');
 			setError('');
 		}
@@ -67,7 +67,7 @@ export default function LoginBox({ changePage }) {
 				</div>
 				<div className='flex items-center justify-between'>
 					<button
-						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all'
+						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all min-w-24'
 						type='submit'
 					>
 						Sign In

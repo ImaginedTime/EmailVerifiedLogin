@@ -43,7 +43,7 @@ const signup = async (req, res) => {
                     from: "no-reply@example.com",
                     to: `${email}`,
                     subject: "Account Verification Link",
-                    text: `Hello ${userName}, Please verify your email by \nclicking on this link : \n\t http://localhost:8080/api/users/verify-email/${emailcheck.dataValues.id}/${token.dataValues.token}`,
+                    text: `Hello ${userName}, Please verify your email by \nclicking on this link : \n\t https://emailverifiedlogin.onrender.com/api/users/verify-email/${emailcheck.dataValues.id}/${token.dataValues.token}`,
                 });
                 //if token is not created, send a status of 400
             } else {
@@ -228,9 +228,23 @@ const login = async (req, res) => {
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.findAll({attributes: ['userName', 'email']});
+        if (users) {
+            return res.status(200).send(users);
+        } else {
+            return res.status(404).send({ error: "No user found" });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //exporting the modules
 module.exports = {
     signup,
     login,
     verifyEmail,
+    getAllUsers,
 };
