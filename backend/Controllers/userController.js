@@ -117,7 +117,7 @@ const verifyEmail = async (req, res) => {
             return res.status(400).send(`
                 <div>
                     <h2>Your verification link may have expired. Please Go to signup and send verification email again.</h2>
-                    <a href='http://localhost:5173/'>Click here to login or signup</a>
+                    <a href='https://emailverifiedlogin.onrender.com/'>Click here to login or signup</a>
                 </div>
             `);
 
@@ -130,7 +130,7 @@ const verifyEmail = async (req, res) => {
                 return res.status(401).send(`
                     <div>
                         <h1>We were unable to find a user for this verification. Please SignUp!</h1>
-                        <a href='http://localhost:5173/'>Click here to login or signup</a>
+                        <a href='https://emailverifiedlogin.onrender.com/'>Click here to login or signup</a>
                     </div>
                 `);
 
@@ -139,7 +139,7 @@ const verifyEmail = async (req, res) => {
                 return res.status(200).send(`
                         <div>
                             <h1>User is already verified</h1>
-                            <a href='http://localhost:5173/'>Click here to login</a>
+                            <a href='https://emailverifiedlogin.onrender.com/'>Click here to login</a>
                         </div>
                     `);
 
@@ -163,7 +163,7 @@ const verifyEmail = async (req, res) => {
                     return res.status(200).send(`
                             <div>
                                 <h1>Email has been Successfully verified</h1>
-                                <a href='http://localhost:5173/'>Click here to login</a>
+                                <a href='https://emailverifiedlogin.onrender.com/'>Click here to login</a>
                             </div>
                         `);
                 }
