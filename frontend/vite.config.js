@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://https://emailverifiedlogin.onrender.com//api',
+        target: 'https://emailverifiedlogin.onrender.com/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
