@@ -8,7 +8,7 @@ export default function Profile({ changePage }) {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('https://emailverifiedlogin.onrender.com/api/users/getAllUsers');
+            const response = await axios.get('/api/users/getAllUsers');
             const data = await response.data;
             setUsers(data);
             console.log(data);

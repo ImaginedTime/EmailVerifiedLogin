@@ -34,7 +34,7 @@ export default function LoginBox({ changePage }) {
 		};
 
 		try {
-			const response = await axios.post('https://emailverifiedlogin.onrender.com/api/users/login', requestBody);
+			const response = await axios.post('/api/users/login', requestBody);
 			const data = await response.data;
 
 			console.log(data);
