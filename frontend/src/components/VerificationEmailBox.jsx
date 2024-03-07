@@ -7,13 +7,17 @@ export default function VerificationEmailBox({ changePage }) {
 
 	const [error, setError] = useState('');
 
+	const [loading, setLoading] = useState(false);
+
 	const signUp = async (e) => {
 		e.preventDefault();
+
+		setLoading(true);
 
 		const requestBody = JSON.parse(localStorage.getItem('signUpRequestBody'));
 
 		try {
-			const response = await axios.post('/api/users/signup', requestBody);
+			const response = await axios.post('https://emailverifiedlogin.onrender.com/api/users/signup', requestBody);
 			const data = await response.data;
 
 			console.log(data);
@@ -33,6 +37,9 @@ export default function VerificationEmailBox({ changePage }) {
 			setTimeout(() => {
 				changePage('login');
 			}, 1000);
+		}
+		finally {
+			setLoading(false);
 		}
 	}
 
@@ -55,7 +62,7 @@ export default function VerificationEmailBox({ changePage }) {
 					type='button'
 					onClick={signUp}
 				>
-					Resend Verification Email
+					{loading ? 'Loading...' : 'Resend Verification Email'}
 				</button>
 				<button
 					className='text-white text-xs font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all'

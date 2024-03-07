@@ -7,10 +7,14 @@ export default function SignUpBox({ changePage }) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('');
 
+	const [loading, setLoading] = useState(false);
+
 	const [error, setError] = useState('');
 
 	const signUp = async (e) => {
 		e.preventDefault();
+
+		setLoading(true);
 
 		if(username.length < 3) {
 			setError('Username must be at least 3 characters long');
@@ -39,7 +43,7 @@ export default function SignUpBox({ changePage }) {
 		localStorage.setItem("signUpRequestBody", JSON.stringify(requestBody));
 
 		try {
-			const response = await axios.post('/api/users/signup', requestBody);
+			const response = await axios.post('https://emailverifiedlogin.onrender.com/api/users/signup', requestBody);
 			const data = await response.data;
 
 			// console.log(data);
@@ -53,6 +57,9 @@ export default function SignUpBox({ changePage }) {
 			// console.error(e);
 			console.log(e.response.data);
 			setError(e.response.data.error);
+		}
+		finally {
+			setLoading(false);
 		}
 	}
 
@@ -103,7 +110,7 @@ export default function SignUpBox({ changePage }) {
 						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all min-w-24'
 						type='submit'
 					>
-						Sign Up
+						{loading ? 'Loading...' : 'Sign Up'}
 					</button>
 
 					<button

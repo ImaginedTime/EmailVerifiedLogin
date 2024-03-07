@@ -6,11 +6,15 @@ export default function LoginBox({ changePage }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
+	const [loading, setLoading] = useState(false);
+
 	const [error, setError] = useState('');
 
 
 	const login = async (e) => {
 		e.preventDefault();
+
+		setLoading(true);
 
 		// check for valid email
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +34,7 @@ export default function LoginBox({ changePage }) {
 		};
 
 		try {
-			const response = await axios.post('/api/users/login', requestBody);
+			const response = await axios.post('https://emailverifiedlogin.onrender.com/api/users/login', requestBody);
 			const data = await response.data;
 
 			console.log(data);
@@ -44,6 +48,9 @@ export default function LoginBox({ changePage }) {
 		catch (e) {
 			console.log(e.response.data);
 			setError(e.response.data.error);
+		}
+		finally {
+			setLoading(false);
 		}
 	}
 
@@ -81,7 +88,7 @@ export default function LoginBox({ changePage }) {
 						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all min-w-24'
 						type='submit'
 					>
-						Sign In
+						{loading ? 'Loading...' : 'Login'}
 					</button>
 
 					<button
