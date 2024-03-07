@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function SignUpBox({ changePage }) {
+export default function SignUpBox({ changePage, baseUrlForApi }) {
 
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('')
@@ -43,7 +43,7 @@ export default function SignUpBox({ changePage }) {
 		localStorage.setItem("signUpRequestBody", JSON.stringify(requestBody));
 
 		try {
-			const response = await axios.post('/api/users/signup', requestBody);
+			const response = await axios.post(`${baseUrlForApi}/api/users/signup`, requestBody);
 			const data = await response.data;
 
 			// console.log(data);

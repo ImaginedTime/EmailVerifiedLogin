@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function VerificationEmailBox({ changePage }) {
+export default function VerificationEmailBox({ changePage, baseUrlForApi }) {
 
 	const [count, setCount] = useState(0);
 
@@ -17,7 +17,7 @@ export default function VerificationEmailBox({ changePage }) {
 		const requestBody = JSON.parse(localStorage.getItem('signUpRequestBody'));
 
 		try {
-			const response = await axios.post('/api/users/signup', requestBody);
+			const response = await axios.post(`${baseUrlForApi}/api/users/signup`, requestBody);
 			const data = await response.data;
 
 			console.log(data);

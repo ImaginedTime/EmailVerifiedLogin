@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-export default function Profile({ changePage }) {
+export default function Profile({ changePage, baseUrlForApi }) {
     const userData = JSON.parse(localStorage.getItem('userData'));
 
     const [users, setUsers] = React.useState([]);
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('/api/users/getAllUsers');
+            const response = await axios.get(`${baseUrlForApi}/api/users/getAllUsers`);
             const data = await response.data;
             setUsers(data);
             console.log(data);
@@ -72,7 +72,6 @@ export default function Profile({ changePage }) {
                                 users && users.length > 0 ?
                                     users.map((user, index) => (
                                         <tr key={index} className=''>
-                                            {/* <td>{user.id}</td> */}
                                             <td className='border-2 border-black text-center'>{user.userName}</td>
                                             <td className='border-2 border-black text-center'>{user.email}</td>
                                         </tr>

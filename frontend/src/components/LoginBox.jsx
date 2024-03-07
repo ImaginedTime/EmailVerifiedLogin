@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-export default function LoginBox({ changePage }) {
+export default function LoginBox({ changePage, baseUrlForApi }) {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ export default function LoginBox({ changePage }) {
 		};
 
 		try {
-			const response = await axios.post('/api/users/login', requestBody);
+			const response = await axios.post(`${baseUrlForApi}/api/users/login`, requestBody);
 			const data = await response.data;
 
 			console.log(data);
