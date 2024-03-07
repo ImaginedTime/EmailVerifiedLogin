@@ -1,7 +1,7 @@
 //importing modules
-const express = require("express");
+import express from "express";
 
-const db = require("../Models");
+import db from "../Models/index.js";
 
 //Assigning db.users to User variable
 const User = db.users;
@@ -46,6 +46,6 @@ const saveUser = async (req, res, next) => {
 };
 
 //exporting module
-module.exports = {
-    saveUser,
+export default {
+    saveUser
 };

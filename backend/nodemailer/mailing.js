@@ -1,9 +1,9 @@
 //importing modules
-const nodemailer = require('nodemailer')
+import { createTransport } from 'nodemailer';
 
 
 //function to send email to the user
-module.exports.sendingMail = async ({ from, to, subject, text }) => {
+export async function sendingMail({ from, to, subject, text }) {
 
     try {
         let mailOptions = ({
@@ -15,7 +15,7 @@ module.exports.sendingMail = async ({ from, to, subject, text }) => {
         //assign createTransport method in nodemailer to a variable
         //service: to determine which email platform to use
         //auth contains the senders email and password which are all saved in the .env
-        const Transporter = nodemailer.createTransport({
+        const Transporter = createTransport({
             service: "Gmail",
             secure: true,
             auth: {

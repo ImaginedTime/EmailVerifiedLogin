@@ -1,8 +1,8 @@
 //importing modules
-const express = require('express')
-const userController = require('../Controllers/userController')
-const { signup, login, verifyEmail, getAllUsers } = userController
-const userAuth = require('../Middlewares/userAuth')
+import express from 'express';
+import userController from '../Controllers/userController.js';
+import userAuth from '../Middlewares/userAuth.js';
+const { signup, login, verifyEmail, getAllUsers } = userController;
 
 const router = express.Router()
 
@@ -15,8 +15,8 @@ router.post('/signup', userAuth.saveUser, signup)
 router.post('/login', login)
 
 //email verification route
-router.get('/verify-email/:id/:token', verifyEmail)
+router.get('/verify-email/:id/:userName', verifyEmail)
 
 router.get("/getAllUsers", getAllUsers)
 
-module.exports = router
+export default router;

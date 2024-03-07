@@ -1,12 +1,14 @@
 //importing modules
-const express = require('express')
-const dotenv = require('dotenv').config()
-const cookieParser = require('cookie-parser')
-const helmet = require('helmet')
-const cors = require('cors')
-const db = require('./Models')
-const userRoutes = require('./Routes/userRoutes')
+import express, { json, urlencoded } from 'express'
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser'
+import helmet from 'helmet'
+import cors from 'cors'
+import { sequelize } from './Models/index.js'
+import userRoutes from './Routes/userRoutes.js'
 
+//configuring dotenv
+dotenv.config()
 
 //setting up your port
 const PORT = process.env.PORT || 8080
@@ -15,15 +17,15 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 //middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(json())
+app.use(urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(helmet())
 app.use(cors())
 
 
-//synchronizing the database and forcing it to false so we dont lose data
-db.sequelize.sync({ force: false }).then(() => {
+//synchronizing the database and forcing it to false so we don't lose data
+sequelize.sync({ force: false }).then(() => {
     console.log("db has been re sync")
 })
 

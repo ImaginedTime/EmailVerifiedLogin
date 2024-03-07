@@ -1,13 +1,15 @@
 //importing modules
-const { Sequelize, DataTypes } = require('sequelize')
-const dotenv = require('dotenv').config()
+import { Sequelize, DataTypes } from 'sequelize';
+import dotenv from 'dotenv';
+import user from './userModel.js';
 
+
+//configuring dotenv
+dotenv.config();
 
 //database connection
-//database name is testing
-
 // const sequelize = new Sequelize(`postgres://postgres:${process.env.Password}@localhost:5432/${process.env.Database}`);
-const sequelize = new Sequelize(`postgres://imaginedtime:eaXuoPhYUEn2wMp7FteBqRP1y9ESs26r@dpg-cngbnsdjm4es7396n7o0-a.oregon-postgres.render.com/emailverify_3d1j?ssl=true`);
+export const sequelize = new Sequelize(`postgres://imaginedtime:eaXuoPhYUEn2wMp7FteBqRP1y9ESs26r@dpg-cngbnsdjm4es7396n7o0-a.oregon-postgres.render.com/emailverify_3d1j?ssl=true`);
 
 //checking if connection is done with the authenticate method in sequelize
 sequelize.authenticate().then(() => {
@@ -20,11 +22,13 @@ sequelize.authenticate().then(() => {
 const db = {}
 
 db.Sequelize = Sequelize
-db.sequelize = sequelize
+// db.sequelize = sequelize
 
 //connecting to models which are the users and the tokens schema
-db.users = require('./userModel')(sequelize, DataTypes)
-db.tokens = require('./token')(sequelize, DataTypes)
+// import token from './token.js';
+
+db.users = user(sequelize, DataTypes);
+// db.tokens = token(sequelize, DataTypes)
 
 
 //relationship of users and token which is one to one relationship
@@ -32,16 +36,16 @@ db.tokens = require('./token')(sequelize, DataTypes)
 //users.hasOne means every user will have just one token
 //tokens.belongsTo means every token will belong to the users table
 // and not any other table
-db.users.hasOne(db.tokens, {
-    as: 'token',
-    foreignKey: "userId"
-})
+// db.users.hasOne(db.tokens, {
+//     as: 'token',
+//     foreignKey: "userId"
+// })
 
-db.tokens.belongsTo(db.users, {
-    as: 'user',
-    foreignKey: "userId"
-})
+// db.tokens.belongsTo(db.users, {
+//     as: 'user',
+//     foreignKey: "userId"
+// })
 
 
 //exporting the module
-module.exports = db
+export default db

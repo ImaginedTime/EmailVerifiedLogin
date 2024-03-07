@@ -39,8 +39,7 @@ export default function SignUpBox({ changePage }) {
 		localStorage.setItem("signUpRequestBody", JSON.stringify(requestBody));
 
 		try {
-			// const response = await axios.post('http://localhost:8080/api/users/signup', requestBody);
-			const response = await axios.post('https://emailverifiedlogin.onrender.com/api/users/signup', requestBody);
+			const response = await axios.post('/api/users/signup', requestBody);
 			const data = await response.data;
 
 			// console.log(data);
